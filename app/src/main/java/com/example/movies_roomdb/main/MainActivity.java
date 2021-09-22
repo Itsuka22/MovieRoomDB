@@ -1,11 +1,13 @@
 package com.example.movies_roomdb.main;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.han.PopularMovies_ContentProvider.R;
@@ -141,4 +143,22 @@ public class MainActivity extends BaseActivity<MainViewModel> implements Communi
     public void setMoviePosition(int position) {
         // i used this method with FavouritesActivity
     }
+
+    @Override
+    public void onBackPressed() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this) ;
+        builder.setIcon(R.drawable.ic_baseline_exit_to_app_24);
+        builder.setTitle("Setuju Keluar");
+        builder.setMessage("Apakah Kamu ingin Keluar?");
+        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("Batal",null);
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
 }
